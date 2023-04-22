@@ -1,18 +1,25 @@
 #!/usr/bin/env bash
-# Sets up a web server for deployment of web_static.
+# This scripts sets up my web servers for the deployment of web_static
 
-apt-get update
-apt-get install -y nginx
+sudo apt-get -y update
+sudo apt-get -y install nginx
 
-mkdir -p /data/web_static/releases/test/
-mkdir -p /data/web_static/shared/
-echo "Holberton School" > /data/web_static/releases/test/index.html
-ln -sf /data/web_static/releases/test/ /data/web_static/current
-
-chown -R ubuntu /data/
-chgrp -R ubuntu /data/
-
-printf %s "server {
+sudo mkdir -p /data/
+sudo mkdir -p /data/web_static/
+sudo mkdir -p /data/web_static/releases/
+sudo mkdir -p /data/web_static/shared/
+sudo mkdir -p /data/web_static/releases/test/
+echo '<html>
+  <head>
+  </head>
+  <body>
+    Holberton School
+  </body>
+</html>' | sudo tee /data/web_static/releases/test/index.html
+sudo ln -sf /data/web_static/releases/test/ /data/web_static/current
+sudo chown -R ubuntu /data/
+sudo chgrp -R ubuntu /data/
+echo "server {
     listen 80 default_server;
     listen [::]:80 default_server;
     add_header X-Served-By $HOSTNAME;
@@ -23,13 +30,12 @@ printf %s "server {
         index index.html index.htm;
     }
     location /redirect_me {
-        return 301 http://cuberule.com/;
+        return 301 http://google.com/;
     }
     error_page 404 /404.html;
     location /404 {
       root /var/www/html;
       internal;
     }
-}" > /etc/nginx/sites-available/default
-
-service nginx restart
+}" | sudo tee /etc/nginx/sites-available/default
+sudo service nginx restart
