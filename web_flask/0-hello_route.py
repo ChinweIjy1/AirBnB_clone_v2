@@ -2,17 +2,17 @@
 """
 script starts Flask web app
     listen on 0.0.0.0, port 5000
-    routes: /: display "Hello HBNB!"
+    routes: /: display "Hello AirBnb One Page!"
 """
 
 from flask import Flask
 app = Flask(__name__)
 
 
-@app.route('/', strict_slashes=False)
+@app.route('/airbnb-onepage/', strict_slashes=False)
 def hello_hbnb():
     """display text"""
-    return "Hello HBNB!"
+    return "Hello AirBnb One Page!"
 
 
 if __name__ == "__main__":
