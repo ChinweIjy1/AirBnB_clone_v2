@@ -2,7 +2,7 @@
 """
 script starts Flask web app
     listen on 0.0.0.0, port 5000
-    routes: /: display "Hello HBNB!"
+    routes: /: display "Hello AirBnb One Page!"
 """
 
 from flask import Flask
