@@ -6,12 +6,13 @@ script starts Flask web app
 """
 
 from flask import Flask
-app = Flask(__name__)
+app = Flask('web_flask')
 
 
-@app.route('/', strict_slashes=False)
+@app.route('/airbnb-onepage/', strict_slashes=False)
 def hello_hbnb():
-    """display text"""
+    """Return a simple HBNH message
+    """
     return "Hello HBNB!"
 
 
